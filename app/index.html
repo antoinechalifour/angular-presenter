@@ -1,0 +1,27 @@
+<html ng-app="app" ng-controller="AppCtrl">
+  <head>
+    <title>Slider</title>
+    <link rel="stylesheet/less" type="text/css" href="app/app.less">
+    <link rel="stylesheet/less" type="text/css" href="slider/slider.less">
+  </head>
+  <body>
+    <div class="slides">
+      <slider next="nextSlide()" previous="previousSlide()">
+          <ui-view></ui-view>
+      </slider>
+    </div>
+
+    <script src="bower_components/less.js/dist/less.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script src="app/index.js"></script>
+    <script src="app/slides.service.js"></script>
+    <script src="app/intro/intro.controller.js"></script>
+    <script src="app/slide1/slide1.controller.js"></script>
+    <script src="app/about/about.controller.js"></script>
+    <script src="app/conclusion/conclusion.controller.js"></script>
+    <script src="slider/index.js"></script>
+    <script src="slider/directives/slider/slider.directive.js"></script>
+  </body>
+</html>
