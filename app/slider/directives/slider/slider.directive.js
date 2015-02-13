@@ -16,11 +16,11 @@
   .controller('SliderCtrl', ['$scope', 'SlideManager', function($scope, SlideManager){
     var current = 0;
 
-    function next(){
+    var next = function(){
       current = SlideManager.next();
     }
 
-    function previous(){
+    var previous = function(){
       current = SlideManager.previous();
     }
 
@@ -33,5 +33,8 @@
       var total = SlideManager.getProgress();
       return { width: total + '%' };
     };
+
+    $scope.next = next;
+    $scope.previous = previous;
   }]);
 })();

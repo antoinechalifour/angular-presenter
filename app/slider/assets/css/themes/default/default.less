@@ -1,22 +1,4 @@
-@red-primary: #F44336;
-@pink-primary: #E91E63;
-@purple-primary: #9C27B0;
-@deeppurple-primary: #673AB7;
-@indigo-primary: #3F51B5;
-@blue-primary: #2196F3;
-@lightblue-primary: #03A9F4;
-@cyan-primary: #00BCD4;
-@teal-primary: #009688;
-@green-primary: #4CAF50;
-@lightgreen-primary: #8BC34A;
-@lime-primary: #CDDC39;
-@yellow-primary: #FFEB3B;
-@amber-primary: #FFC107;
-@orange-primary: #FF9800;
-@deeporange-primary: #FF5722;
-@brown-primary: #795548;
-@grey-primary: #9E9E9E;
-@greyblue-primary: #607D8B;
+@import (less) './colors.less';
 
 @slidepadding: 50px;
 
@@ -65,7 +47,7 @@ h1 {
     text-align: left;
   }
 
-  p {
+  p, li {
     font-size: 25px;
   }
 }
@@ -193,14 +175,6 @@ h1 {
   .slides;
   .slide-content-dark;
   background-color: @greyblue-primary;
-}
-
-.slide-center {
-  text-align: center;
-}
-
-.slide-right {
-  text-align: right;
 }
 
 /**
