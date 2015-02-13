@@ -1,0 +1,37 @@
+<div class="slide-deeporange-primary">
+  <h1 class="top-buffer-sm title-lg text-right" ng-non-bindable>Getting started</h1>
+  <div class="col-md-6">
+    <div class="code">
+      <pre>
+        <code class="language-javascript">
+  app.controller('AppCtrl', ['SlideManager', function( SlideManager){
+    SlideManager.initSlides([
+      {
+        name: 'hello',
+        templateUrl: 'app/hello/hello.template.html'
+      },
+      {
+        name: 'introducing',
+        templateUrl: 'app/introducing/introducing.template.html',
+        controller: 'IntroducingCtrl'
+      },
+      {
+        name: 'about',
+        templateUrl: 'app/about/about.template.html'
+      }
+    ]);
+  }]);
+        </code>
+      </pre>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <p>You just need to init your slides in the SlideManager factory.</p>
+    <p>You have to provide</p>
+    <ul>
+      <li>A template / templateUrl</li>
+      <li>A name (url)</li>
+      <li>[opt] a controller</li>
+    </ul>
+  </div>
+</div>

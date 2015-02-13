@@ -1,22 +1,41 @@
 (function(){
   'use strict';
 
-  angular.module('app', ['ui.router', 'slider'])
+  angular.module('app', ['slider'])
 
-  .controller('AppCtrl', ['$scope', '$state', 'Slides', function($scope, $state, Slides){
-    $scope.current = Slides.getNumber($state.current);
-    function changeSlide(nb){
-      $scope.current = nb;
-      $state.go(Slides.getSlide($scope.current));
-    }
-    changeSlide(0);
-
-    $scope.nextSlide = function(){
-      changeSlide($scope.current + 1);
-    };
-
-    $scope.previousSlide = function(){
-      changeSlide($scope.current - 1);
-    };
+  .controller('AppCtrl', ['SlideManager', function(SlideManager){
+    SlideManager.slides([
+      {
+        name: 'hello',
+        templateUrl: 'app/slides/hello/hello.template.html'
+      },
+      {
+        name: 'introducing',
+        templateUrl: 'app/slides/introducing/introducing.template.html',
+        controller: 'IntroducingCtrl'
+      },
+      {
+        name: 'gettingstarted',
+        templateUrl: 'app/slides/gettingstarted/gettingstarted.template.html'
+      },
+      {
+        name: 'templating',
+        templateUrl: 'app/slides/templating/templating.template.html'
+      },
+      {
+        name: 'themes',
+        templateUrl: 'app/slides/themes/themes.template.html'
+      },
+      {
+        name: 'controllers',
+        templateUrl: 'app/slides/controllers/controllers.template.html',
+        controller: 'ControllersCtrl'
+      },
+      {
+        name: 'todo',
+        templateUrl: 'app/slides/todo/todo.template.html',
+        controller: 'TodoCtrl'
+      }
+    ]);
   }]);
 })();

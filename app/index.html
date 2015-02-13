@@ -1,27 +1,36 @@
 <html ng-app="app" ng-controller="AppCtrl">
   <head>
     <title>Slider</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="slider/assets/libs/prism/prism.css">
     <link rel="stylesheet/less" type="text/css" href="app/app.less">
-    <link rel="stylesheet/less" type="text/css" href="slider/slider.less">
+    <link rel="stylesheet/less" type="text/css" href="slider/assets/css/slider.less">
+    <link rel="stylesheet/less" type="text/css" href="slider/assets/css/themes/default.less">
   </head>
   <body>
     <div class="slides">
-      <slider next="nextSlide()" previous="previousSlide()">
-          <ui-view></ui-view>
+      <slider>
+          <div ui-view></div>
       </slider>
     </div>
 
     <script src="bower_components/less.js/dist/less.min.js"></script>
+    <script src="bower_components/jQuery/dist/jQuery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <script src="app/index.js"></script>
-    <script src="app/slides.service.js"></script>
-    <script src="app/intro/intro.controller.js"></script>
-    <script src="app/slide1/slide1.controller.js"></script>
-    <script src="app/about/about.controller.js"></script>
-    <script src="app/conclusion/conclusion.controller.js"></script>
+    <script src="slider/assets/libs/prism/prism.js"></script>
+
+    <script src="app/slides/hello/hello.controller.js"></script>
+    <script src="app/slides/introducing/introducing.controller.js"></script>
+    <script src="app/slides/todo/todo.controller.js"></script>
+    <script src="app/slides/controllers/controllers.controller.js"></script>
     <script src="slider/index.js"></script>
     <script src="slider/directives/slider/slider.directive.js"></script>
+    <script src="slider/services/slidemanager.service.js"></script>
   </body>
 </html>
