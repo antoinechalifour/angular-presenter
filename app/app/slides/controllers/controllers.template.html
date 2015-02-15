@@ -1,3 +1,16 @@
-<div class="slide-amber-primary">
-  <h1 class="top-buffer-sm title-lg">Controllers</h1>
+<div ng-class="getClass()" class="text-center aligner">
+  <div>
+    <h1>{{title || 'Controllers'}}</h1>
+    <div class="container">
+      <div class="col-6">
+        <p>In fact, each template creates a state in the ui-router used in the app. Keeping that in mind, you can of course associate a controller to each of yours slides !</p>
+      </div>
+      <div class="col-6">
+        <p>This gives you the opportunity to create very interactive slides ! Have a look :</p>
+        <button class="btn btn-primary" ng-if="theme === 'amber'" ng-click="changeTheme('blue')">Want it blue ?</button>
+        <button class="btn" ng-if="theme === 'blue'" ng-click="changeTheme('amber')">Want it amber ?</button>
+        <input type="text" ng-model="title" placeholder="Whant a new title ?"/>
+      </div>
+    </div>
+  </div>
 </div>

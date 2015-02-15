@@ -4,6 +4,6 @@
   angular.module('app')
 
   .controller('TodoCtrl', ['$scope', function($scope){
-    $scope.todo = ['animations', 'default theme', 'remote controller', 'move stuff to where they belong'];
+    $scope.todo = ['animations', 'better theme', 'improve remote controller'];
   }]);
 })();

@@ -5,8 +5,25 @@
 
   app.factory('SlideManager', ['$state', function($state){
     var current;
-
     var slides = [];
+    var remote = false;
+    var socket = false;
+
+    var config = function(options){
+        if(options.remote) remote = true;
+    };
+
+    var next = function(){
+      var next = (current + 1 >= slides.length) ? 0 : current + 1;
+      changeSlide(next);
+      return next;
+    };
+
+    var previous = function(){
+      var previous = (current - 1 < 0) ? slides.length - 1 : current - 1;
+      changeSlide(previous);
+      return previous;
+    };
 
     var initSlides = function(provided){
       provided.forEach(function(slide){
@@ -19,32 +36,47 @@
           if(slide.controller) tmp.controller = slide.controller;
 
           app.stateProvider.state(slide.name, tmp);
-          slides.push(slide.name);
+          slides.push({
+            name: slide.name,
+            note: slide.note
+          });
         }
       });
 
       current = 0;
-      changeSlide(current);
+
+      if(remote){
+        socket = io.connect({query: 'role=presentation'});
+        socket.on('connect', function(){
+          console.log('Connected');
+          changeSlide(current);
+        });
+        socket.on('slide:next', function(){
+          next();
+        });
+        socket.on('slide:previous', function(){
+          previous();
+        });
+      }
+      else {
+        changeSlide(current);
+      }
     };
 
     var changeSlide = function(index){
       current = index;
-      console.log('Going to slide %s', slides[index]);
-      $state.go(slides[index]);
+      console.log('Going to slide %s', slides[index].name);
+      $state.go(slides[index].name);
+      if(socket){
+        socket.emit('slide:changed', {current: current+1, total: slides.length, note: slides[index].note});
+      }
     };
 
     return {
+      config: config,
       slides: initSlides,
-      next: function(){
-        var next = (current + 1 >= slides.length) ? 0 : current + 1;
-        changeSlide(next);
-        return next;
-      },
-      previous: function(){
-        var previous = (current - 1 < 0) ? slides.length - 1 : current - 1;
-        changeSlide(previous);
-        return previous;
-      },
+      next: next,
+      previous: previous,
       getProgress: function(){
         if(slides.length === 1) return 100;
         return (current / (slides.length - 1)) * 100;

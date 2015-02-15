@@ -1,11 +1,10 @@
-<div class="slide-deeporange-primary">
-  <h1 class="top-buffer-sm title-lg text-right" ng-non-bindable>Getting started</h1>
-  <div class="col-md-6">
-    <div class="code">
-      <pre>
-        <code class="language-javascript">
-  app.controller('AppCtrl', ['SlideManager', function( SlideManager){
-    SlideManager.initSlides([
+<div class="slide-pink-primary">
+  <h1 class="text-right buffer-bottom-md" ng-non-bindable>Getting started</h1>
+  <div class="aligner">
+    <div class="col-5 text-center">
+      <div class="well">
+        <pre><code>app.controller('AppCtrl', ['SlideManager', function( SlideManager){
+    SlideManager.slides([
       {
         name: 'hello',
         templateUrl: 'app/hello/hello.template.html'
@@ -17,21 +16,22 @@
       },
       {
         name: 'about',
-        templateUrl: 'app/about/about.template.html'
+        templateUrl: 'app/about/about.template.html',
+        note: 'This is a note.'
       }
     ]);
-  }]);
-        </code>
-      </pre>
+  }]);</code></pre>
+      </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <p>You just need to init your slides in the SlideManager factory.</p>
-    <p>You have to provide</p>
-    <ul>
-      <li>A template / templateUrl</li>
-      <li>A name (url)</li>
-      <li>[opt] a controller</li>
-    </ul>
+    <div class="col-7">
+      <p>You just need to init your slides in the <span class="text-dark">SlideManager</span> factory.
+        You have to provide : </p>
+      <ul>
+        <li>A template / templateUrl</li>
+        <li>A name (url)</li>
+        <li>[opt] a controller</li>
+        <li>[opt] a note for the presenter</li>
+      </ul>
+    </div>
   </div>
 </div>

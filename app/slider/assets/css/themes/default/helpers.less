@@ -1,0 +1,79 @@
+@import (less) './colors.less';
+
+.block-center {
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-success {
+  color: @lime-primary;
+}
+
+.text-danger {
+  color: @red-primary;
+}
+
+.text-info {
+  color: @deeppurple-primary;
+}
+
+.text-warning {
+  color: @amber-primary;
+}
+
+.text-dark {
+  color: #313131;
+}
+
+.list-unstyled {
+  list-style: none;
+}
+
+/**
+ * Buffers
+ */
+.buffer-top-lg {
+  padding-top: 200px !important;
+}
+
+.buffer-top-md {
+  padding-top: 100px !important;
+}
+
+.buffer-top-sm {
+  padding-top: 50px !important;
+}
+
+.buffer-bottom-lg {
+  padding-bottom: 200px !important;
+}
+
+.buffer-bottom-md {
+  padding-bottom: 100px !important;
+}
+
+.buffer-bottom-sm {
+  padding-bottom: 50px !important;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.generate-columns(12);
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col-@{i} {
+    width: (@i * 100% / @n);
+    float: left;
+    padding: 10px;
+  }
+  .generate-columns(@n, (@i + 1));
+}

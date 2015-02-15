@@ -1,0 +1,42 @@
+<html ng-app="remote" ng-controller="RemoteCtrl">
+  <head>
+    <title>Slider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="remote/app.css">
+  </head>
+  <body class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>Presenter's note</p>
+      </div>
+      <div class="panel-body">
+        <span ng-if="!note"><em>Notes are displayed in here.</em></span>
+        <span ng-if="note"><h3>{{note}}</h3></span>
+      </div>
+    </div>
+    <div class="well text-center">
+      <div chrono-timer timer-name="myTimer" start-time="time">
+        <h1>{{ hours }}:{{ minutes|zeropad }}:{{ seconds|zeropad }}</h1>
+      </div>
+      <div>
+        <button class="btn btn-lg" ng-click="start()">Start</button>
+        <button class="btn btn-lg" ng-click="stop()">Stop</button>
+      </div>
+    </div>
+
+    <div class="btn-slides">
+      <button class="btn btn-lg" ng-click="previous()">Previous</button>
+      <button class="btn btn-lg" ng-click="next()">Next</button>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-chrono/dist/assets/angular-chrono.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="remote/app.js"></script>
+  </body>
+</html>

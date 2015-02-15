@@ -1,0 +1,24 @@
+{
+  "name": "angular-presenter",
+  "version": "1.0.0",
+  "description": "Angular directive for creating slides",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antoinechalifour/angular-presenter.git"
+  },
+  "author": "antoinechalifour <antoine.chalifour@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoinechalifour/angular-presenter/issues"
+  },
+  "homepage": "https://github.com/antoinechalifour/angular-presenter",
+  "dependencies": {
+    "express": "^4.11.2",
+    "socket.io": "^1.3.4"
+  }
+}
