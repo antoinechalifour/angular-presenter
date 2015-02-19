@@ -1,0 +1,36 @@
+[
+   {
+      "name":"hello",
+      "templateUrl":"app/slides/hello/hello.template.html"
+   },
+   {
+      "name":"introducing",
+      "templateUrl":"app/slides/introducing/introducing.template.html",
+      "controller":"IntroducingCtrl",
+      "note": "A simple note, no markdown."
+   },
+   {
+      "name":"gettingstarted",
+      "templateUrl":"app/slides/gettingstarted/gettingstarted.template.html",
+      "noteMD": "resources/notes/gettingstarted.md"
+   },
+   {
+      "name":"templating",
+      "templateUrl":"app/slides/templating/templating.template.html"
+   },
+   {
+      "name":"controllers",
+      "templateUrl":"app/slides/controllers/controllers.template.html",
+      "controller":"ControllersCtrl"
+   },
+   {
+      "name":"remote",
+      "templateUrl":"app/slides/remote/remote.template.html",
+      "note": "A note about remote"
+   },
+   {
+      "name":"todo",
+      "templateUrl":"app/slides/todo/todo.template.html",
+      "controller":"TodoCtrl"
+   }
+]

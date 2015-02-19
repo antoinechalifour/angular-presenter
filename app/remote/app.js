@@ -1,17 +1,14 @@
 (function(){
   'use strict';
 
-  angular.module('remote', ['angular-chrono'])
+  angular.module('remote', ['timer', 'hmTouchEvents', 'btford.markdown'])
 
-  .controller('RemoteCtrl', ['$scope', 'chronoService', function($scope, chronoService){
-    var socket = io.connect({query: 'role=remote'});
+  .controller('RemoteCtrl', ['$scope', function($scope){
+    var socket = io.connect(window.location.origin + '/remote');
     $scope.note = false;
+    $scope.noteMD = false;
 
-    $scope.time = false;
-    $scope.hours = 0;
-    $scope.minutes = 0;
-    $scope.seconds = 0;
-    chronoService.addTimer('myTimer', { interval: 500 });
+    $scope.running = false;
 
     $scope.next = function(){
       socket.emit('slide:next');
@@ -21,23 +18,30 @@
       socket.emit('slide:previous');
     };
 
-    $scope.start = function(){
-      if(!$scope.time) $scope.time = Date.now();
-      chronoService.start();
+    $scope.toggleTimer = function(){
+      $scope.running = !$scope.running;
+      if($scope.running) $scope.$broadcast('timer-start');
+      else $scope.$broadcast('timer-stop');
     };
 
-    $scope.stop = function(){
-      chronoService.stop();
-    };
-
-    socket.on('slide:changed', function(data){
+    socket.on('slide:notif', function(data){
+      console.log(data);
       var content = false;
+      var contentMD = false;
       if(data.note){
         content = data.note;
       }
+      if(data.noteMD){
+        contentMD = data.noteMD;
+      }
       $scope.$apply(function(){
         $scope.note = content;
+        $scope.noteMD = contentMD;
+        $scope.current = data.current;
+        $scope.total = data.total;
       });
     });
+
+    socket.emit('remote:ready');
   }]);
 })();

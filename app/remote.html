@@ -2,39 +2,45 @@
   <head>
     <title>Slider</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet/less" type="text/css" href="remote/app.css">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="remote/app.css">
   </head>
-  <body class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <p>Presenter's note</p>
+  <body hm-swiperight="previous()" hm-swipeleft="next()">
+    <div class="slider-container slide-grey-primary">
+      <div class="container">
+        <div class="col-xs-12 col-md-3">
+          <div class="col-xs-12 text-center form-group">
+            <h1>Slide {{current}} / {{total}}</h1>
+            <button class="btn btn-primary btn-lg" ng-click="previous()">Previous</button>
+            <button class="btn btn-primary btn-lg" ng-click="next()">Next</button>
+          </div>
+          <div class="col-xs-12 text-center form-group">
+            <h2><timer ng-click="toggleTimer()" autostart="false" timer-start="timer-start" timer-stop="timer-stop">{{hhours}}:{{mminutes}}:{{sseconds}}</timer></h2>
+            <button class="btn btn-primary btn-lg" ng-init="trunning = false" ng-click="trunning = !trunning;toggleTimer()">
+              <span ng-if="trunning">Stop</span>
+              <span ng-if="!trunning">Start</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-9">
+          <p class="text-muted" ng-if="!note && !noteMD"><em>No note for the current slide.</em></p>
+          <span ng-if="note">
+            <div btf-markdown="note"></div>
+          </span>
+          <span ng-if="noteMD">
+            <div btf-markdown ng-include="noteMD"
+          </span>
+        </div>
       </div>
-      <div class="panel-body">
-        <span ng-if="!note"><em>Notes are displayed in here.</em></span>
-        <span ng-if="note"><h3>{{note}}</h3></span>
-      </div>
-    </div>
-    <div class="well text-center">
-      <div chrono-timer timer-name="myTimer" start-time="time">
-        <h1>{{ hours }}:{{ minutes|zeropad }}:{{ seconds|zeropad }}</h1>
-      </div>
-      <div>
-        <button class="btn btn-lg" ng-click="start()">Start</button>
-        <button class="btn btn-lg" ng-click="stop()">Stop</button>
-      </div>
-    </div>
 
-    <div class="btn-slides">
-      <button class="btn btn-lg" ng-click="previous()">Previous</button>
-      <button class="btn btn-lg" ng-click="next()">Next</button>
-    </div>
-
+    <script src="bower_components/less.js/dist/less.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/hammerjs/hammer.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/showdown/compressed/Showdown.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-chrono/dist/assets/angular-chrono.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-markdown-directive/markdown.js"></script>
+    <script src="bower_components/angular-timer/dist/angular-timer.min.js"></script>
+    <script src="bower_components/ryanmullins-angular-hammer/angular.hammer.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
     <script src="remote/app.js"></script>

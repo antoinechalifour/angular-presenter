@@ -1,13 +1,12 @@
 'use strict';
 
-module.exports = function(socket){
+module.exports = function(socket, io){
   console.log('> Nouvelle presentation');
-  socket.join('presentation');
 
-  socket.on('slide:changed', function(data){
-    console.log('slide:changed %d / %d', data.current, data.total);
+  socket.on('slide:notif', function(data){
+    console.log('slide:notif %d / %d', data.current, data.total);
     if(!data.current || !data.total) return false;
 
-    socket.to('remote').emit('slide:changed', data);
+    io.of('remote').emit('slide:notif', data);
   });
 };

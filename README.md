@@ -43,6 +43,9 @@ The array looks like that :
 ]
 ```
 
+##Remote control
+
+
 ##TODO List
 * animations
 * authentification for remote control ?

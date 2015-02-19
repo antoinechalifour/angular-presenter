@@ -5,7 +5,7 @@
 
   .controller('AppCtrl', ['$http', 'SlideManager', function($http, SlideManager){
     $http({
-      url: 'presentation.json'
+      url: 'resources/presentation.json'
     })
     .success(function(data){
       SlideManager.config({

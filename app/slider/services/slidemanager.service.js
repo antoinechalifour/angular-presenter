@@ -38,7 +38,8 @@
           app.stateProvider.state(slide.name, tmp);
           slides.push({
             name: slide.name,
-            note: slide.note
+            note: slide.note,
+            noteMD: slide.noteMD
           });
         }
       });
@@ -46,7 +47,7 @@
       current = 0;
 
       if(remote){
-        socket = io.connect({query: 'role=presentation'});
+        socket = io.connect(window.location.origin + '/presentation');
         socket.on('connect', function(){
           console.log('Connected');
           changeSlide(current);
@@ -56,6 +57,10 @@
         });
         socket.on('slide:previous', function(){
           previous();
+        });
+        socket.on('remote:new', function(){
+          console.log('remote:new');
+          socket.emit('slide:notif', {current: current+1, total: slides.length, note: slides[current].note, noteMD: slides[current].noteMD});
         });
       }
       else {
@@ -68,7 +73,7 @@
       console.log('Going to slide %s', slides[index].name);
       $state.go(slides[index].name);
       if(socket){
-        socket.emit('slide:changed', {current: current+1, total: slides.length, note: slides[index].note});
+        socket.emit('slide:notif', {current: current+1, total: slides.length, note: slides[index].note, noteMD: slides[current].noteMD});
       }
     };
 
